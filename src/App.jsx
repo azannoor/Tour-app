@@ -2,6 +2,9 @@
 
 import './App.css'
 import Slider from './components/Slider'
+import Counter from './components/Counter'
+import { useState } from 'react'
+
 
 const Images = [
   {
@@ -17,11 +20,24 @@ const Images = [
 ]
 
 function App() {
+  const[showCounter, setShow] = useState(true)
   
-
+ 
+  const setHideHandler = ()=>{
+    setShow((prev)=>{
+     return !prev
+    })
+ }
+ 
+ const setShowHandler = ()=>{
+    setShow(true)
+ }
+ 
   return (
    <div>
-   
+        <button onClick={setShowHandler} value={showCounter}>show</button>
+        <button onClick={setHideHandler} value={showCounter}>hide</button>
+      <Counter show={showCounter}></Counter>
     <Slider sliderData={Images}></Slider>
    </div>
   )
